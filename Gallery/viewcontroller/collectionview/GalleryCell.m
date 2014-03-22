@@ -8,6 +8,8 @@
 
 #import "GalleryCell.h"
 
+#define IMAGE_VIEW_MARGIN 10
+
 @implementation GalleryCell
 
 - (id)initWithFrame:(CGRect)frame
@@ -15,8 +17,16 @@
     self = [super initWithFrame:frame];
     if (self) {
         
-        self.imageView = [[UIImageView alloc] initWithFrame:frame];
-        self.imageView.clipsToBounds = YES;
+        CGRect imageViewFrame = CGRectMake(IMAGE_VIEW_MARGIN,
+                                           IMAGE_VIEW_MARGIN,
+                                           frame.size.width-IMAGE_VIEW_MARGIN*2,
+                                           frame.size.height-IMAGE_VIEW_MARGIN*2);
+        
+        self.imageView = [[UIImageView alloc] initWithFrame:imageViewFrame];
+        self.imageView.layer.shadowColor = [UIColor blackColor].CGColor;
+        self.imageView.layer.shadowOffset = CGSizeMake(1, 1);
+//        self.imageView.clipsToBounds = YES;
+        
         [self addSubview:self.imageView];
         
     }

@@ -9,12 +9,12 @@
 #import "GalleryCollectionViewLayout.h"
 
 #define COLLUMN_NUMMBER 2
+#define WIDTH 160
+#define HEIGHT 160
 
 @interface GalleryCollectionViewLayout () {
     NSMutableArray * _attributesArray;
     CGSize _contentSize;
-    
-    CGFloat width;
 }
 
 @end
@@ -24,10 +24,9 @@
 -(void)prepareLayout
 {
     _attributesArray = [[NSMutableArray alloc] init];
-    
-    _contentSize = CGSizeMake(160, 160);
-    
+
     NSInteger count = [self.collectionView numberOfItemsInSection:0];
+    _contentSize = CGSizeMake(320, count / COLLUMN_NUMMBER * HEIGHT);
     
     for (NSInteger i=0; i < count; i++) {
         
@@ -36,7 +35,7 @@
         
         NSIndexPath *indexPath = [NSIndexPath indexPathForItem:i inSection:0];
         UICollectionViewLayoutAttributes *attributes = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];
-        attributes.frame = CGRectIntegral(CGRectMake(collumn*_contentSize.width/2, row*_contentSize.height/2, _contentSize.width, _contentSize.height));
+        attributes.frame = CGRectIntegral(CGRectMake(collumn*WIDTH, row*HEIGHT, WIDTH, HEIGHT));
         NSLog(@"%d %d %@", row, collumn, attributes);
         [_attributesArray addObject:attributes];
     }
