@@ -34,6 +34,7 @@
     // insert view blow collectionview
     _whiteView = [[UIView alloc] initWithFrame:self.view.bounds];
     _whiteView.backgroundColor = [UIColor whiteColor];
+    _whiteView.layer.opacity = 0;
     [self.view insertSubview:_whiteView belowSubview:self.collectionView];
     
     UIPinchGestureRecognizer *pinchRecognizer = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(handlePinch:)];
@@ -51,6 +52,22 @@
 - (void)expandAllCells
 {
     NSLog(@"expandAllCells");
+    NSMutableArray *finalPositions = [[NSMutableArray alloc] init];
+    for (GalleryCell *cell in self.collectionView.visibleCells) {
+        NSValue *rectValue = [NSValue valueWithCGRect:cell.frame];
+        [finalPositions addObject:rectValue];
+        cell.frame = self.startRect;
+    }
+    [UIView animateWithDuration:0.3 animations:^{
+        // opcity of background
+        _whiteView.layer.opacity = 1;
+        // all position of cells
+        for (int i=0; i<[self.collectionView.visibleCells count]; i++) {
+            GalleryCell *cell = [self.collectionView.visibleCells objectAtIndex:i];
+            cell.transform = CGAffineTransformIdentity;
+            cell.frame = [[finalPositions objectAtIndex:i] CGRectValue];
+        }
+    }];
 }
 
 - (void)scaleAllCells:(CGFloat)scale
