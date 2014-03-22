@@ -90,9 +90,13 @@
         // opcity of background
         _whiteView.layer.opacity = 0;
         // all position of cells
+        CGRect convertedStartRect = CGRectMake(self.startRect.origin.x,
+                                               self.startRect.origin.y + self.collectionView.contentOffset.y,
+                                               self.startRect.size.width,
+                                               self.startRect.size.height);
         for (GalleryCell *cell in self.collectionView.visibleCells) {
             cell.transform = CGAffineTransformIdentity;
-            cell.frame = self.startRect;
+            cell.frame = convertedStartRect;
         }
     } completion:^(BOOL finished) {
         [self.view removeFromSuperview];

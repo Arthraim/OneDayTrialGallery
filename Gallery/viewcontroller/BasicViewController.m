@@ -94,11 +94,12 @@
     NSLog(@"%@", imageUrl);
     
     GalleryCell *cell = (GalleryCell *)[collectionView cellForItemAtIndexPath:indexPath];
+    CGRect startRect = CGRectMake(cell.frame.origin.x, cell.frame.origin.y-self.collectionView.contentOffset.y, cell.frame.size.width, cell.frame.size.height);
     
     NSArray *childImages = [self buildChildrenImages:imageUrl];
     
     self.childViewController = [[ChildViewController alloc] initImageUrls:childImages];
-    self.childViewController.startRect = cell.frame;
+    self.childViewController.startRect = startRect;
     [self.view addSubview:self.childViewController.view];
     
 }
