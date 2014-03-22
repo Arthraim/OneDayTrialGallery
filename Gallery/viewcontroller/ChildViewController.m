@@ -9,7 +9,9 @@
 #import "ChildViewController.h"
 #import "GalleryCell.h"
 
-@interface ChildViewController ()
+@interface ChildViewController () {
+    UIView *_whiteView;
+}
 
 @end
 
@@ -27,16 +29,36 @@
 {
     [super viewDidLoad];
     
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor clearColor];
     self.collectionView.backgroundColor = [UIColor clearColor];
+    // insert view blow collectionview
+    _whiteView = [[UIView alloc] initWithFrame:self.view.bounds];
+    _whiteView.backgroundColor = [UIColor whiteColor];
+    [self.view insertSubview:_whiteView belowSubview:self.collectionView];
     
     UIPinchGestureRecognizer *pinchRecognizer = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(handlePinch:)];
     pinchRecognizer.delegate = self;
     [self.view addGestureRecognizer:pinchRecognizer];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    [self expandAllCells];
+}
+
+- (void)expandAllCells
+{
+    NSLog(@"expandAllCells");
+}
+
 - (void)scaleAllCells:(CGFloat)scale
 {
+    // opcity of background
+    _whiteView.layer.opacity = scale;
+
+    // all scale of cells
     scale = scale > 1 ? 1 : scale;
     scale = scale < 0.5 ? 0.5 : scale;
     for (GalleryCell *cell in self.collectionView.visibleCells) {
@@ -45,9 +67,12 @@
     }
 }
 
-- (void)resetAllCells
+- (void)unfoldAllCells
 {
     [UIView animateWithDuration:0.3 animations:^{
+        // opcity of background
+        _whiteView.layer.opacity = 0;
+        // all position of cells
         for (GalleryCell *cell in self.collectionView.visibleCells) {
             cell.transform = CGAffineTransformIdentity;
             cell.frame = self.startRect;
@@ -63,7 +88,7 @@
 
     if (recognizer.state == UIGestureRecognizerStateEnded) {
         NSLog(@"gesture ended");
-        [self resetAllCells];
+        [self unfoldAllCells];
     }
     else if (recognizer.state == UIGestureRecognizerStateChanged) {
         NSLog(@"gesture changed %f", recognizer.scale);
