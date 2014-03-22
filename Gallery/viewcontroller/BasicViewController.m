@@ -46,7 +46,6 @@
     _collectionView.delegate = self;
 
     [_collectionView registerClass:[GalleryCell class] forCellWithReuseIdentifier:CELL_REUSE_IDENTIFIER];
-
     
     [self.view addSubview:_collectionView];
 }
@@ -81,7 +80,7 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     GalleryCell *cell = (GalleryCell *)[collectionView dequeueReusableCellWithReuseIdentifier:CELL_REUSE_IDENTIFIER forIndexPath:indexPath];
-
+    [cell updateCellWithIndexPath:indexPath];
     [cell.imageView setImageWithURL:[NSURL URLWithString:_images[indexPath.row]]];
 //    cell.titleLabel.text = [NSString stringWithFormat:@"%i", indexPath.row];
     

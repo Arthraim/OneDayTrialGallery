@@ -36,7 +36,7 @@
         NSIndexPath *indexPath = [NSIndexPath indexPathForItem:i inSection:0];
         UICollectionViewLayoutAttributes *attributes = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];
         attributes.frame = CGRectIntegral(CGRectMake(collumn*WIDTH, row*HEIGHT, WIDTH, HEIGHT));
-        NSLog(@"%d %d %@", row, collumn, attributes);
+//        NSLog(@"%d %d %@", row, collumn, attributes);
         [_attributesArray addObject:attributes];
     }
 }

@@ -17,12 +17,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         
-        CGRect imageViewFrame = CGRectMake(IMAGE_VIEW_MARGIN,
-                                           IMAGE_VIEW_MARGIN,
-                                           frame.size.width-IMAGE_VIEW_MARGIN*2,
-                                           frame.size.height-IMAGE_VIEW_MARGIN*2);
-        
-        self.imageView = [[UIImageView alloc] initWithFrame:imageViewFrame];
+        self.imageView = [[UIImageView alloc] initWithFrame:CGRectZero];
         self.imageView.layer.shadowColor = [UIColor blackColor].CGColor;
         self.imageView.layer.shadowOffset = CGSizeMake(1, 1);
 //        self.imageView.clipsToBounds = YES;
@@ -31,6 +26,23 @@
         
     }
     return self;
+}
+
+- (void)updateCellWithIndexPath:(NSIndexPath *)indexPath
+{
+    CGRect imageViewFrame;
+    if (indexPath.row % 2 == 0) {
+        imageViewFrame = CGRectMake(IMAGE_VIEW_MARGIN * 4 / 3,
+                                    IMAGE_VIEW_MARGIN * 4 / 3,
+                                    self.frame.size.width-IMAGE_VIEW_MARGIN * 4 / 3 * 1.5,
+                                    self.frame.size.height-IMAGE_VIEW_MARGIN * 4 / 3 * 1.5);
+    } else {
+        imageViewFrame = CGRectMake(IMAGE_VIEW_MARGIN * 4 / 3 * 0.5,
+                                    IMAGE_VIEW_MARGIN * 4 / 3,
+                                    self.frame.size.width-IMAGE_VIEW_MARGIN * 4 / 3 * 1.5,
+                                    self.frame.size.height-IMAGE_VIEW_MARGIN * 4 / 3 * 1.5);
+    }
+    self.imageView.frame = imageViewFrame;
 }
 
 /*
