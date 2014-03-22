@@ -13,9 +13,18 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     
+    NSArray *images = @[@"http://res.cloudinary.com/hrscywv4p/image/upload/c_thumb,h_300,w_300/dnb4n65vl24is9mquuel.jpg",
+                        @"http://res.cloudinary.com/hrscywv4p/image/upload/c_thumb,h_300,w_300/vvhnfiyxbbtqtv484gl8.jpg",
+                        @"http://res.cloudinary.com/hrscywv4p/image/upload/c_thumb,h_300,w_300/wtosd6admrx49nfufwwb.jpg",
+                        @"http://res.cloudinary.com/hrscywv4p/image/upload/c_thumb,h_300,w_300/n8kbuv7dhzrmiziyeell.jpg",
+                        @"http://res.cloudinary.com/hrscywv4p/image/upload/c_thumb,h_300,w_300/o8vgy3pehjgzhrlevpka.jpg",
+                        @"http://res.cloudinary.com/hrscywv4p/image/upload/c_thumb,h_300,w_300/zgto3l3fwxro668ctxgl.jpg",
+                        @"http://res.cloudinary.com/hrscywv4p/image/upload/c_thumb,h_300,w_300/pqraq6r7dsvh8jmzwr1y.jpg",
+                        @"http://res.cloudinary.com/hrscywv4p/image/upload/c_thumb,h_300,w_300/wgupvl6vubdr9bhidpej.jpg"];
+    
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     
-    self.basicViewController = [[BasicViewController alloc] initWithNibName:nil bundle:nil];
+    self.basicViewController = [[BasicViewController alloc] initImageUrls:images];
     self.window.rootViewController = self.basicViewController;
     
     [self.window makeKeyAndVisible];

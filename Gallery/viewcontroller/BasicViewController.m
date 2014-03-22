@@ -9,34 +9,25 @@
 #import "BasicViewController.h"
 #import "GalleryCollectionViewLayout.h"
 #import "GalleryCell.h"
+#import "ChildViewController.h"
 
 #define CELL_REUSE_IDENTIFIER @"GalleryCellIdentifier"
 
 @interface BasicViewController () {
     GalleryCollectionViewLayout *_collectionViewLayout;
-    UICollectionView *_collectionView;
     
-    NSMutableArray *_images;
+    NSMutableArray *_expandingImages;
 }
-
 
 @end
 
 @implementation BasicViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (id)initImageUrls:(NSArray *)urls
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self = [self initWithNibName:nil bundle:nil];
     if (self) {
-        _images = [@[@"http://res.cloudinary.com/hrscywv4p/image/upload/c_thumb,h_300,w_300/dnb4n65vl24is9mquuel.jpg",
-                     @"http://res.cloudinary.com/hrscywv4p/image/upload/c_thumb,h_300,w_300/vvhnfiyxbbtqtv484gl8.jpg",
-                     @"http://res.cloudinary.com/hrscywv4p/image/upload/c_thumb,h_300,w_300/wtosd6admrx49nfufwwb.jpg",
-                     @"http://res.cloudinary.com/hrscywv4p/image/upload/c_thumb,h_300,w_300/n8kbuv7dhzrmiziyeell.jpg",
-                     @"http://res.cloudinary.com/hrscywv4p/image/upload/c_thumb,h_300,w_300/o8vgy3pehjgzhrlevpka.jpg",
-                     @"http://res.cloudinary.com/hrscywv4p/image/upload/c_thumb,h_300,w_300/zgto3l3fwxro668ctxgl.jpg",
-                     @"http://res.cloudinary.com/hrscywv4p/image/upload/c_thumb,h_300,w_300/pqraq6r7dsvh8jmzwr1y.jpg",
-                     @"http://res.cloudinary.com/hrscywv4p/image/upload/c_thumb,h_300,w_300/wgupvl6vubdr9bhidpej.jpg"]
-                   mutableCopy];
+        self.images = [urls mutableCopy];
     }
     return self;
 }
@@ -66,6 +57,15 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (NSArray *)buildChildrenImages:(NSString *)urlString
+{
+    _expandingImages = [[NSMutableArray alloc] init];
+    for (int i = 0; i < 10; i++) {
+        [_expandingImages addObject:urlString];
+    }
+    return _expandingImages;
+}
+
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     return [_images count];
@@ -79,6 +79,18 @@
 //    cell.titleLabel.text = [NSString stringWithFormat:@"%i", indexPath.row];
     
     return cell;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString *imageUrl = [_images objectAtIndex:indexPath.row];
+    NSLog(@"%@", imageUrl);
+    
+    NSArray *childImages = [self buildChildrenImages:imageUrl];
+    
+    self.childViewController = [[ChildViewController alloc] initImageUrls:childImages];
+    [self.view addSubview:self.childViewController.view];
+    
 }
 
 

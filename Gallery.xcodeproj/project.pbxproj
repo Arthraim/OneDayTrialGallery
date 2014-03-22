@@ -23,6 +23,8 @@
 		9440F12A18DD2DD000107DE4 /* GalleryCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 9440F12918DD2DD000107DE4 /* GalleryCollectionViewLayout.m */; };
 		9440F12D18DD2FC700107DE4 /* GalleryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9440F12C18DD2FC700107DE4 /* GalleryCell.m */; };
 		9440F12F18DD378800107DE4 /* Reveal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9440F12E18DD378800107DE4 /* Reveal.framework */; };
+		94B4A20E18DD50D7004439F4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94B4A20D18DD50D7004439F4 /* QuartzCore.framework */; };
+		94B4A21118DD523C004439F4 /* ChildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B4A21018DD523C004439F4 /* ChildViewController.m */; };
 		F9DB62E1631341D78FFF57BC /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B9BBEAE8294A42EB8ED656D9 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -60,6 +62,9 @@
 		9440F12B18DD2FC700107DE4 /* GalleryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GalleryCell.h; sourceTree = "<group>"; };
 		9440F12C18DD2FC700107DE4 /* GalleryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GalleryCell.m; sourceTree = "<group>"; };
 		9440F12E18DD378800107DE4 /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reveal.framework; sourceTree = "<group>"; };
+		94B4A20D18DD50D7004439F4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		94B4A20F18DD523C004439F4 /* ChildViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChildViewController.h; sourceTree = "<group>"; };
+		94B4A21018DD523C004439F4 /* ChildViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChildViewController.m; sourceTree = "<group>"; };
 		B9BBEAE8294A42EB8ED656D9 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8F45FB7AC3B4995BF3B2700 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -69,6 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94B4A20E18DD50D7004439F4 /* QuartzCore.framework in Frameworks */,
 				9440F0EE18DD280600107DE4 /* CoreGraphics.framework in Frameworks */,
 				9440F0F018DD280600107DE4 /* UIKit.framework in Frameworks */,
 				9440F12F18DD378800107DE4 /* Reveal.framework in Frameworks */,
@@ -113,6 +119,7 @@
 		9440F0EA18DD280600107DE4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				94B4A20D18DD50D7004439F4 /* QuartzCore.framework */,
 				9440F12E18DD378800107DE4 /* Reveal.framework */,
 				9440F0EB18DD280600107DE4 /* Foundation.framework */,
 				9440F0ED18DD280600107DE4 /* CoreGraphics.framework */,
@@ -169,6 +176,8 @@
 			children = (
 				9440F12418DD2DA800107DE4 /* BasicViewController.h */,
 				9440F12518DD2DA800107DE4 /* BasicViewController.m */,
+				94B4A20F18DD523C004439F4 /* ChildViewController.h */,
+				94B4A21018DD523C004439F4 /* ChildViewController.m */,
 				9440F12618DD2DA800107DE4 /* collectionview */,
 			);
 			path = viewcontroller;
@@ -321,6 +330,7 @@
 				9440F0FC18DD280600107DE4 /* AppDelegate.m in Sources */,
 				9440F0F818DD280600107DE4 /* main.m in Sources */,
 				9440F12D18DD2FC700107DE4 /* GalleryCell.m in Sources */,
+				94B4A21118DD523C004439F4 /* ChildViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
