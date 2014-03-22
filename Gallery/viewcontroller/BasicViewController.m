@@ -66,6 +66,13 @@
     return _expandingImages;
 }
 
+//- (IBAction)handleRotate:(UIRotationGestureRecognizer *)recognizer {
+//    recognizer.view.transform = CGAffineTransformRotate(recognizer.view.transform, recognizer.rotation);
+//    recognizer.rotation = 0;
+//}
+
+#pragma mark - collectionView delegate & datasource
+
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     return [_images count];
@@ -86,9 +93,12 @@
     NSString *imageUrl = [_images objectAtIndex:indexPath.row];
     NSLog(@"%@", imageUrl);
     
+    GalleryCell *cell = (GalleryCell *)[collectionView cellForItemAtIndexPath:indexPath];
+    
     NSArray *childImages = [self buildChildrenImages:imageUrl];
     
     self.childViewController = [[ChildViewController alloc] initImageUrls:childImages];
+    self.childViewController.startRect = cell.frame;
     [self.view addSubview:self.childViewController.view];
     
 }

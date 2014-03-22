@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "BasicViewController.h"
 
-@interface ChildViewController : BasicViewController
+@interface ChildViewController : BasicViewController <UIGestureRecognizerDelegate>
+
+@property (nonatomic, assign) CGRect startRect;
 
 @end
