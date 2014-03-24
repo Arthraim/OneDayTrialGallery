@@ -128,8 +128,10 @@
 //    self.view.backgroundColor.
 
     if (recognizer.state == UIGestureRecognizerStateEnded) {
-        NSLog(@"gesture ended");
-        [self unfoldAllCells];
+        NSLog(@"gesture ended %f", recognizer.scale);
+        if (recognizer.scale < 1) { // zoom in only
+            [self unfoldAllCells];
+        }
     }
     else if (recognizer.state == UIGestureRecognizerStateChanged) {
         NSLog(@"gesture changed %f", recognizer.scale);
