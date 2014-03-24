@@ -13,6 +13,10 @@
 
 #define CELL_REUSE_IDENTIFIER @"GalleryCellIdentifier"
 
+#define COLLUMN_NUMMBER 2
+#define WIDTH 140
+#define HEIGHT 140
+
 @interface BasicViewController () {
     GalleryCollectionViewLayout *_collectionViewLayout;
     
@@ -38,7 +42,9 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
     
-    _collectionViewLayout = [[GalleryCollectionViewLayout alloc] init];
+    _collectionViewLayout = [[GalleryCollectionViewLayout alloc] initWithColumnNumber:COLLUMN_NUMMBER
+                                                                                width:WIDTH
+                                                                               height:HEIGHT];
     
     _collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:_collectionViewLayout];
     _collectionView.backgroundColor = [UIColor whiteColor];
@@ -80,7 +86,11 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     GalleryCell *cell = (GalleryCell *)[collectionView dequeueReusableCellWithReuseIdentifier:CELL_REUSE_IDENTIFIER forIndexPath:indexPath];
-    [cell updateCellWithIndexPath:indexPath];
+    
+    CGFloat x = (COLLUMN_NUMMBER - indexPath.row % COLLUMN_NUMMBER) * _collectionViewLayout.margin / COLLUMN_NUMMBER;
+    CGFloat y = _collectionViewLayout.margin;
+    CGRect imageViewFrame = CGRectMake(x, y, WIDTH, HEIGHT);
+    [cell updateCellWithImageViewFrame:imageViewFrame];
     [cell.imageView setImageWithURL:[NSURL URLWithString:_images[indexPath.row]]];
 //    cell.titleLabel.text = [NSString stringWithFormat:@"%i", indexPath.row];
     

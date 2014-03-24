@@ -10,4 +10,11 @@
 
 @interface GalleryCollectionViewLayout : UICollectionViewLayout
 
+@property (nonatomic, assign) CGFloat columnNumber;
+@property (nonatomic, assign) CGFloat width; // imageview width
+@property (nonatomic, assign) CGFloat height; // imageview height
+@property (nonatomic, assign) CGFloat margin;
+
+- (instancetype)initWithColumnNumber:(CGFloat)columnNumber width:(CGFloat)width height:(CGFloat)height;
+
 @end

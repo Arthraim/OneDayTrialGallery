@@ -8,34 +8,47 @@
 
 #import "GalleryCollectionViewLayout.h"
 
-#define COLLUMN_NUMMBER 2
-#define WIDTH 160
-#define HEIGHT 160
-
 @interface GalleryCollectionViewLayout () {
     NSMutableArray * _attributesArray;
     CGSize _contentSize;
+    
+    CGFloat cellWidth;
 }
 
 @end
 
 @implementation GalleryCollectionViewLayout
 
--(void)prepareLayout
+- (instancetype)initWithColumnNumber:(CGFloat)columnNumber width:(CGFloat)width height:(CGFloat)height
+{
+    self = [super init];
+    if (self) {
+        _columnNumber = columnNumber;
+        _width = width;
+        _height = height;
+        _margin = (320 - _width * _columnNumber) / (_columnNumber + 1);
+    }
+    return self;
+}
+
+- (void)prepareLayout
 {
     _attributesArray = [[NSMutableArray alloc] init];
 
+    CGFloat cellWidth = 320 / _columnNumber;
+    CGFloat cellHeight = _height + _margin;
+    
     NSInteger count = [self.collectionView numberOfItemsInSection:0];
-    _contentSize = CGSizeMake(320, count / COLLUMN_NUMMBER * HEIGHT);
+    _contentSize = CGSizeMake(320, count / _columnNumber * cellHeight + _margin);
     
     for (NSInteger i=0; i < count; i++) {
         
-        NSInteger row = i / COLLUMN_NUMMBER;
-        NSInteger collumn = i % COLLUMN_NUMMBER;
+        NSInteger row = i / _columnNumber;
+        NSInteger collumn = i % (NSInteger)_columnNumber;
         
         NSIndexPath *indexPath = [NSIndexPath indexPathForItem:i inSection:0];
         UICollectionViewLayoutAttributes *attributes = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];
-        attributes.frame = CGRectIntegral(CGRectMake(collumn*WIDTH, row*HEIGHT, WIDTH, HEIGHT));
+        attributes.frame = CGRectIntegral(CGRectMake(collumn*cellWidth, row*cellHeight, cellWidth, cellHeight));
 //        NSLog(@"%d %d %@", row, collumn, attributes);
         [_attributesArray addObject:attributes];
     }

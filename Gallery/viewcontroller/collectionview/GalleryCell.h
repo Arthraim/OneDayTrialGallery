@@ -13,6 +13,6 @@
 @property (nonatomic, strong) UIImageView *imageView;
 
 - (id)initWithFrame:(CGRect)frame;
-- (void)updateCellWithIndexPath:(NSIndexPath *)indexPath;
+- (void)updateCellWithImageViewFrame:(CGRect)frame;
 
 @end
