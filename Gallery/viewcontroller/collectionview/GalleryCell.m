@@ -32,14 +32,14 @@
 {
     CGRect imageViewFrame;
     if (indexPath.row % 2 == 0) {
-        imageViewFrame = CGRectMake(IMAGE_VIEW_MARGIN * 4 / 3,
-                                    IMAGE_VIEW_MARGIN * 4 / 3,
-                                    self.frame.size.width-IMAGE_VIEW_MARGIN * 4 / 3 * 1.5,
-                                    self.frame.size.height-IMAGE_VIEW_MARGIN * 4 / 3 * 1.5);
+        imageViewFrame = CGRectMake(IMAGE_VIEW_MARGIN,
+                                    IMAGE_VIEW_MARGIN,
+                                    self.frame.size.width-IMAGE_VIEW_MARGIN * 1.5,
+                                    self.frame.size.height-IMAGE_VIEW_MARGIN * 1.5);
     } else {
-        imageViewFrame = CGRectMake(IMAGE_VIEW_MARGIN * 4 / 3 * 0.5,
-                                    IMAGE_VIEW_MARGIN * 4 / 3,
-                                    self.frame.size.width-IMAGE_VIEW_MARGIN * 4 / 3 * 1.5,
+        imageViewFrame = CGRectMake(IMAGE_VIEW_MARGIN * 0.5,
+                                    IMAGE_VIEW_MARGIN,
+                                    self.frame.size.width-IMAGE_VIEW_MARGIN * 1.5,
                                     self.frame.size.height-IMAGE_VIEW_MARGIN * 4 / 3 * 1.5);
     }
     self.imageView.frame = imageViewFrame;
