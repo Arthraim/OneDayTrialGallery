@@ -13,9 +13,9 @@
 
 #define CELL_REUSE_IDENTIFIER @"GalleryCellIdentifier"
 
-#define COLLUMN_NUMMBER 2
-#define WIDTH 140
-#define HEIGHT 140
+#define COLLUMN_NUMMBER 3
+#define WIDTH 95
+#define HEIGHT 95
 
 @interface BasicViewController () {
     GalleryCollectionViewLayout *_collectionViewLayout;

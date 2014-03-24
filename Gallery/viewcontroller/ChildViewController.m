@@ -11,6 +11,7 @@
 
 @interface ChildViewController () {
     UIView *_whiteView;
+    NSMutableArray *_finalPositions;
 }
 
 @end
@@ -52,10 +53,10 @@
 - (void)expandAllCells
 {
     NSLog(@"expandAllCells");
-    NSMutableArray *finalPositions = [[NSMutableArray alloc] init];
+    _finalPositions = [[NSMutableArray alloc] init];
     for (GalleryCell *cell in self.collectionView.visibleCells) {
         NSValue *rectValue = [NSValue valueWithCGRect:cell.frame];
-        [finalPositions addObject:rectValue];
+        [_finalPositions addObject:rectValue];
         cell.frame = self.startRect;
     }
     [UIView animateWithDuration:0.3 animations:^{
@@ -65,22 +66,39 @@
         for (int i=0; i<[self.collectionView.visibleCells count]; i++) {
             GalleryCell *cell = [self.collectionView.visibleCells objectAtIndex:i];
             cell.transform = CGAffineTransformIdentity;
-            cell.frame = [[finalPositions objectAtIndex:i] CGRectValue];
+            cell.frame = [[_finalPositions objectAtIndex:i] CGRectValue];
         }
     }];
 }
 
-- (void)scaleAllCells:(CGFloat)scale
+- (void)transformAllCells:(CGFloat)scale
 {
     // opcity of background
     _whiteView.layer.opacity = scale;
 
     // all scale of cells
-    scale = scale > 1 ? 1 : scale;
-    scale = scale < 0.5 ? 0.5 : scale;
-    for (GalleryCell *cell in self.collectionView.visibleCells) {
-        cell.transform = CGAffineTransformIdentity;
-        cell.transform = CGAffineTransformScale(cell.transform, scale, scale);
+    CGFloat rangedScale = scale > 1 ? 1 : scale;
+    rangedScale = rangedScale < 0.7 ? 0.7 : rangedScale;
+    for (int i=0; i<[self.collectionView.visibleCells count]; i++) {
+        GalleryCell *cell = [self.collectionView.visibleCells objectAtIndex:i];
+
+        // scale
+        cell.transform = CGAffineTransformIdentity; // reset
+        if (cell.frame.origin.x == self.startRect.origin.x
+            && cell.frame.origin.y == self.startRect.origin.y) {
+            [self.collectionView bringSubviewToFront:cell];
+        } else {
+            cell.transform = CGAffineTransformScale(cell.transform, rangedScale, rangedScale);
+        }
+        
+        // move position
+        CGRect finalRect = [[_finalPositions objectAtIndex:i] CGRectValue];
+        cell.center = CGPointMake(finalRect.size.width / 2 + finalRect.origin.x,
+                                  finalRect.size.height / 2 + finalRect.origin.y);  // reset
+        CGPoint startCenter = CGPointMake(self.startRect.size.width / 2 + self.startRect.origin.x,
+                                          self.startRect.size.height / 2 + self.startRect.origin.y);
+        cell.center = CGPointMake((startCenter.x - cell.center.x) * (1 - rangedScale) + cell.center.x,
+                                  (startCenter.y - cell.center.y) * (1 - rangedScale) + cell.center.y);
     }
 }
 
@@ -113,7 +131,7 @@
     }
     else if (recognizer.state == UIGestureRecognizerStateChanged) {
         NSLog(@"gesture changed %f", recognizer.scale);
-        [self scaleAllCells:recognizer.scale];
+        [self transformAllCells:recognizer.scale];
     }
     
 }
