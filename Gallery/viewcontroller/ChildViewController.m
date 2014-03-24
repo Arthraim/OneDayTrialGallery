@@ -82,13 +82,15 @@
     for (int i=0; i<[self.collectionView.visibleCells count]; i++) {
         GalleryCell *cell = [self.collectionView.visibleCells objectAtIndex:i];
 
-        // scale
+        // scale & rotate
         cell.transform = CGAffineTransformIdentity; // reset
         if (cell.frame.origin.x == self.startRect.origin.x
             && cell.frame.origin.y == self.startRect.origin.y) {
             [self.collectionView bringSubviewToFront:cell];
         } else {
-            cell.transform = CGAffineTransformScale(cell.transform, rangedScale, rangedScale);
+            CGAffineTransform scaleTransform = CGAffineTransformScale(cell.transform, rangedScale, rangedScale);
+            CGAffineTransform rotateTransform = CGAffineTransformRotate(cell.transform, i * M_PI_4 * (1 - rangedScale) * (i % 2 == 0 ? 1 : -1));
+            cell.transform = CGAffineTransformConcat(scaleTransform, rotateTransform);
         }
         
         // move position
