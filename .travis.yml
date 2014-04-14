@@ -8,7 +8,7 @@ before_install:
 - ls /Users/travis/.rvm/gems/ruby-2.0.0-p247/bin
 - which pod
 before_script:
-- openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in travis_scripts/profile/one_day_trial_adhoc.mobileprovision.enc -d -a -out travis_scripts/profile/one_day_trial_adhoc.mobileprovision
+- openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in travis_scripts/profiles/one_day_trial_adhoc.mobileprovision.enc -d -a -out travis_scripts/profiles/one_day_trial_adhoc.mobileprovision
 - openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in travis_scripts/certs/one_day_trial_adhoc.cer.enc -d -a -out travis_scripts/certs/one_day_trial_adhoc.cer
 - openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in travis_scripts/certs/one_day_trial_adhoc.p12.enc -d -a -out travis_scripts/certs/one_day_trial_adhoc.p12
 - ./travis_scripts/add-key.sh
