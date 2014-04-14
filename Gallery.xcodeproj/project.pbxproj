@@ -453,8 +453,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: XUYANG WANG (G6B63JMW7X)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: XUYANG WANG (G6B63JMW7X)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -464,7 +464,7 @@
 				INFOPLIST_FILE = "Gallery/Gallery-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "8BFEF39E-440C-4844-8BA0-ADCA48E55914";
+				PROVISIONING_PROFILE = "A62BE322-9BBD-460D-BB80-E63F8FA1B841";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -475,8 +475,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: XUYANG WANG (G6B63JMW7X)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: XUYANG WANG (G6B63JMW7X)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -486,7 +486,7 @@
 				INFOPLIST_FILE = "Gallery/Gallery-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "8BFEF39E-440C-4844-8BA0-ADCA48E55914";
+				PROVISIONING_PROFILE = "A62BE322-9BBD-460D-BB80-E63F8FA1B841";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

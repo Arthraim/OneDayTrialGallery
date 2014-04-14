@@ -2,8 +2,22 @@ language: objective-c
 xcode_workspace: Gallery.xcworkspace
 xcode_scheme: Gallery
 before_install:
-  - rvm use ruby-2.0.0-p247
-  - ls /Users/travis/.rvm/gems/ruby-2.0.0-p247/bin
-  - gem install --no-rdoc --no-ri cocoapods
-  - ls /Users/travis/.rvm/gems/ruby-2.0.0-p247/bin
-  - which pod
+- rvm use ruby-2.0.0-p247
+- ls /Users/travis/.rvm/gems/ruby-2.0.0-p247/bin
+- gem install --no-rdoc --no-ri cocoapods
+- ls /Users/travis/.rvm/gems/ruby-2.0.0-p247/bin
+- which pod
+before_script:
+- openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in travis_scripts/profile/one_day_trial_adhoc.mobileprovision.enc -d -a -out travis_scripts/profile/one_day_trial_adhoc.mobileprovision
+- openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in travis_scripts/certs/one_day_trial_adhoc.cer.enc -d -a -out travis_scripts/certs/one_day_trial_adhoc.cer
+- openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in travis_scripts/certs/one_day_trial_adhoc.p12.enc -d -a -out travis_scripts/certs/one_day_trial_adhoc.p12
+- ./travis_scripts/add-key.sh
+script:
+- xctool -workspace Gallery.xcworkspace -scheme Gallery -sdk iphoneos -configuration Release OBJROOT=$PWD/build SYMROOT=$PWD/build ONLY_ACTIVE_ARCH=NO
+env:
+  global:
+  - APP_NAME="Gallery"
+  - DEVELOPER_NAME="iPhone Developer: XUYANG WANG (PFFEG369JY)"
+  - PROFILE_NAME="one_day_trial_adhoc"
+  - secure: gb5zL1VRqkxczKE+lJB3+f1tPHUMS+fL/kiKAlgKCConUtdynweCzjdqNe4e/eGhFZ7R4YGUgQzR7Nji2yvka2sBvgzeHDViU9MAP66exMPaRk3IKFhnoFN7zEhg7y+ph56JF/SxzEY3Agn3tXFxXw19Go0zVI/R4xTn2yDL1yY=
+  - secure: XtgqL86A7XquhldayQr3dd9qjCBUjdUNemtaqkWh3DtZ+48TSFsIi5Ct/FiGzM+B/hI1oattXQwLWnzojkpo066GlcQMhsabUgXJ/mIwETTxoTOZNsKRZ0YhsUPUOoo2NktBBWw7zuJSJQ9C4a15c7oyGj+szpzIiiDS1vKin+o=
