@@ -17,7 +17,6 @@ script:
 - xctool -workspace Gallery.xcworkspace -scheme Gallery -sdk iphoneos -configuration Release OBJROOT=$PWD/build SYMROOT=$PWD/build ONLY_ACTIVE_ARCH=NO
 after_success:
 - ./travis_scripts/sign-and-upload.sh
-- xcrun -log -sdk iphoneos PackageApplication "$OUTPUTDIR/$APP_NAME.app" -o "$OUTPUTDIR/$APP_NAME.ipa" -sign "$DEVELOPER_NAME" -embed "$PROVISIONING_PROFILE"
 after_script:
 - ./travis_scripts/remove-key.sh
 env:
