@@ -18,6 +18,8 @@ ls build/Release-iphoneos
 RELEASE_DATE=`date '+%Y-%m-%d %H:%M:%S'`
 RELEASE_NOTES="Build: $TRAVIS_BUILD_NUMBER\nUploaded: $RELEASE_DATE"
 
+zip $OUTPUTDIR/$APP_NAME.app.dSYM $OUTPUTDIR/$APP_NAME.app.dSYM
+
 curl http://testflightapp.com/api/builds.json \
   -F file="@$OUTPUTDIR/$APP_NAME.ipa" \
   -F dsym="@$OUTPUTDIR/$APP_NAME.app.dSYM.zip" \
