@@ -3,7 +3,7 @@ xcode_workspace: Gallery.xcworkspace
 xcode_scheme: Gallery
 before_install:
 - export LANG=en_US.UTF-8
-- rvm use 2.0
+# - rvm use 2.0
 # - ls /Users/travis/.rvm/gems/ruby-2.0.0-p247/bin
 - gem install --no-rdoc --no-ri cocoapods
 # - ls /Users/travis/.rvm/gems/ruby-2.0.0-p247/bin
