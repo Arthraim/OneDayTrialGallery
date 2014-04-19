@@ -3,10 +3,10 @@ xcode_workspace: Gallery.xcworkspace
 xcode_scheme: Gallery
 before_install:
 - export LANG=en_US.UTF-8
-- rvm use ruby-2.0.0-p247
-- ls /Users/travis/.rvm/gems/ruby-2.0.0-p247/bin
+- rvm use 2.0
+# - ls /Users/travis/.rvm/gems/ruby-2.0.0-p247/bin
 - gem install --no-rdoc --no-ri cocoapods
-- ls /Users/travis/.rvm/gems/ruby-2.0.0-p247/bin
+# - ls /Users/travis/.rvm/gems/ruby-2.0.0-p247/bin
 - which pod
 before_script:
 - openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in travis_scripts/profiles/adhoc.mobileprovision.enc -d -a -out travis_scripts/profiles/adhoc.mobileprovision
