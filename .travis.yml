@@ -24,7 +24,7 @@ after_script:
 env:
   global:
   - APP_NAME="Gallery"
-  - DEVELOPER_NAME="iPhone Distribution: XUYANG WANG (G6B63JMW7X)"
+  - 'DEVELOPER_NAME="iPhone Distribution: XUYANG WANG (G6B63JMW7X)"'
   - PROFILE_NAME="one_day_trial_adhoc"
   - secure: F5ihzhQLoDJ0rQ5CoRTBR1n4uzRcY5KY5VSH9rBipYklzN8Qux16OFLXljie/0OTMK/uezSexB2cknXEHu2fvBTm7CPrEAas/UeNKiBfKKBjStK2GDOsv+csgiUnKvM615ZLUZAFZMFH592CxDo4gQkcUG4vxV8iXw7nS5XUikQ=
   - secure: Zn8JU6ITxAzMO3wueDY0WWVGcYZW2vB3dWC70GTHhy1bpvR5qLpmz9jEjGhzyFdzoUYtYE4ZdwSaThJvNtdtPj64ead/6WysXpH3aQ/SnN9N557MD5V9eGNYTy5YJodLFA78jq4b0+BPGvUQ3znt4TTzA9m1VQs4cBd6LpcPMc0=
