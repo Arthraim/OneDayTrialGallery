@@ -1,6 +1,6 @@
 #!/bin/sh
 security create-keychain -p travis iosbuild.keychain
-# security unlock-keychain -p travis iosbuild.keychain
+security unlock-keychain -p travis iosbuild.keychain
 security set-keychain-settings -u iosbuild.keychain
 ls ~/Library/Keychains/
 security add-certificates ./travis_scripts/certs/AppleWWDRCA.cer
